@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.3
+
+* Added on_reset to remove all tokens for given sub. To be used in password reset
+
 ## v2.0.2
 
 * Fix deps range to include Guardian 2
