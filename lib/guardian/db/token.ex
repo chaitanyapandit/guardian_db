@@ -67,6 +67,16 @@ defmodule Guardian.DB.Token do
     |> Guardian.DB.repo().delete_all(prefix: prefix())
   end
 
+  @doc """
+  Destroys tokens for a spefic sub. To be used in case of password reset where 
+  other sessions should also get invalidated.
+  """
+  def destroy_all_for_sub(sub) do
+    query_schema()
+    |> where([token], token.sub == ^sub)
+    |> Guardian.DB.repo().delete_all(prefix: prefix())
+  end
+
   @doc false
   def query_schema do
     {schema_name(), Token}

@@ -166,6 +166,15 @@ defmodule Guardian.DB do
     |> Token.destroy_token(claims, jwt)
   end
 
+
+  @doc """
+  When resetting password, removes from the database all tokens
+  for a given sub so all sessions get invalidated
+  """
+  def on_reset(sub) do
+   	Token.destroy_all_for_sub(sub)
+  end
+
   @doc false
   def repo do
     :guardian
